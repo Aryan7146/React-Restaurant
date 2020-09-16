@@ -5,7 +5,24 @@ import { Loading } from './LoadingComponent';
 import { baseUrl } from '../shared/baseUrl';
 import { Fade, Stagger } from 'react-animation-components';
 
-function RenderLeader({leaders}){
+function RenderLeader({leader}){
+    return(
+            <div key={leader.id} className="col-12 mt-5">
+                <Media tag="li">
+                    <Media left middle>
+                        <Media object src={baseUrl + leader.image} alt={leader.name} />
+                    </Media>
+                    <Media body className="ml-5">
+                        <Media heading>{leader.name}</Media>
+                        <p>{leader.designation}</p>
+                        <p>{leader.description}</p>
+                    </Media>
+                </Media>
+            </div>
+    );
+}
+
+const leaders = (props) => {
     if (props.leaders.isLoading) {
         return (
             <Loading />
@@ -16,35 +33,20 @@ function RenderLeader({leaders}){
             <h4>{props.leaders.errMess}</h4>
         );
     }
-    else if (leaders != null) {
+    else {
         return (
             <Stagger in>
-                {leaders.map((leader) => {
+                {props.leaders.leaders.map((leader) => {
                     return(
                     <Fade in>
-                        <div key={leader.id} className="col-12 mt-5">
-                            <Media tag="li">
-                                <Media left middle>
-                                    <Media object src={baseUrl + leader.image} alt={leader.name} />
-                                </Media>
-                                <Media body className="ml-5">
-                                    <Media heading>{leader.name}</Media>
-                                    <p>{leader.designation}</p>
-                                    <p>{leader.description}</p>
-                                </Media>
-                            </Media>
-                        </div>
+                    <RenderLeader leader={leader} />
                     </Fade>
                     );
                 })}
             </Stagger>
-            );
-    }
-    else
-        return(
-              <div></div>  
         );
-}
+    }
+};
 
 function About(props) {
 
@@ -104,7 +106,7 @@ function About(props) {
                 </div>
                 <div className="col-12">
                     <Media list>
-                        <RenderLeader leaders={props.leaders.leaders} />
+                        {leaders(props)}
                     </Media>
                 </div>
             </div>

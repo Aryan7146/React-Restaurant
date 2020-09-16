@@ -1,0 +1,30 @@
+This is a project which I made during my training in Frontend Web Development using React.
+
+It is a single page application which imitates the actions required in a website designed for restaurants.
+
+This website was designed using the frameworks Bootstrap 4 and React.
+
+The necessary databases and media files have been provided using a static json-server.
+
+The following npm packages were used and hence, need to be installed beforehand to successfully run the application:
+bootstrap
+bootstrap-social
+cross-fetch
+font-awesome
+prop-types
+reactstrap
+react-popper
+react-redux
+react-router-dom
+react-transition-group
+react-animation-components
+react-redux-form
+redux
+redux-thunk
+redux-logger
+
+If the application does not work through json-server, the required files have been provided at the locations:
+./public/assets/images
+./src/shared
+So, the application can be made to work by accessing these files and making corresponding changes to the program.
+WARNING: Due to the changes made, some functions and features might not work!
